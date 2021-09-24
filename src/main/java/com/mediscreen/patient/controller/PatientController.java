@@ -1,0 +1,60 @@
+package com.mediscreen.patient.controller;
+
+
+import com.mediscreen.patient.model.Patient;
+import com.mediscreen.patient.services.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class PatientController {
+
+    @Autowired
+    private PatientService patientService;
+
+    @GetMapping(value = "/patientList")
+    public List<Patient> findAllPatient() {
+        List<Patient> patientList = patientService.findAllPatient();
+
+        return patientList;
+    }
+
+    @GetMapping(value = "/patientById/{id}")
+    public Patient findPatientById(@PathVariable("id") Long id) {
+        Patient patient = patientService.findPatientById(id);
+
+        return patient;
+    }
+
+    @GetMapping(value = "/patientByName")
+    public Patient findPatientByGivenNameAndFamilyName(@RequestParam String givenName,@RequestParam String familyName) {
+        Patient patient = patientService.findPatientByGivenNameAndFamilyName(givenName, familyName);
+
+        return patient;
+    }
+
+
+    @PostMapping(value = "/patientSave", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Patient patientSave(@RequestBody Patient patient) {
+        patientService.savePatient(patient);
+        Patient newPatient = patientService.findPatientByGivenNameAndFamilyName(patient.getGivenName(), patient.getFamilyName());
+
+        return newPatient;
+    }
+
+    @DeleteMapping(value = "/patientDelete/{id}")
+    public Boolean patientDelete(@PathVariable Long id) {
+        return patientService.deletePatient(patientService.findPatientById(id));
+
+    }
+
+    @PutMapping(value = "/patientUpdate/{id}")
+    public Patient patientUpdate(@PathVariable Long id, @RequestBody Patient patient) {
+
+        return patientService.updatePatient(id, patient);
+    }
+
+}
