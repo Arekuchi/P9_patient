@@ -15,6 +15,8 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
+    // GET
+
     @GetMapping(value = "/patientList")
     public List<Patient> findAllPatient() {
         List<Patient> patientList = patientService.findAllPatient();
@@ -36,6 +38,7 @@ public class PatientController {
         return patient;
     }
 
+    // POST
 
     @PostMapping(value = "/patientSave", produces = MediaType.APPLICATION_JSON_VALUE)
     public Patient patientSave(@RequestBody Patient patient) {
@@ -45,11 +48,15 @@ public class PatientController {
         return newPatient;
     }
 
+    // DELETE
+
     @DeleteMapping(value = "/patientDelete/{id}")
     public Boolean patientDelete(@PathVariable Long id) {
         return patientService.deletePatient(patientService.findPatientById(id));
 
     }
+
+    // PUT
 
     @PutMapping(value = "/patientUpdate/{id}")
     public Patient patientUpdate(@PathVariable Long id, @RequestBody Patient patient) {
