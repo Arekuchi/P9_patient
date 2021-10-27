@@ -18,7 +18,7 @@ public interface PatientService {
     // CUD - Create, Update, Delete
     Patient savePatient(Patient patient);
     Boolean deletePatient(Patient patient);
-    Patient updatePatient(Long id, Patient patient);
+    Patient updatePatient(Patient patient);
 
 
 

@@ -1,17 +1,30 @@
 package com.mediscreen.patient.model;
 
+import javax.persistence.*;
 import java.sql.Date;
 
-
+@Entity
+@Table(name="patient")
 public class Patient {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
+
+    @Column(name="given_name")
     private String givenName;
+    @Column(name="family_name")
     private String familyName;
+    @Column(name="birthdate")
     private Date birthdate;
+    @Column(name="sex")
     private String sex;
+    @Column(name="home_address")
     private String homeAddress;
+    @Column(name="phone_number")
     private String phoneNumber;
+
 
     public Patient() {
     }
@@ -82,4 +95,5 @@ public class Patient {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 }

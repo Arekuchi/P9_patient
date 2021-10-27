@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class PatientController {
 
@@ -16,7 +17,6 @@ public class PatientController {
     private PatientService patientService;
 
     // GET
-
     @GetMapping(value = "/patientList")
     public List<Patient> findAllPatient() {
         List<Patient> patientList = patientService.findAllPatient();
@@ -39,7 +39,6 @@ public class PatientController {
     }
 
     // POST
-
     @PostMapping(value = "/patientSave", produces = MediaType.APPLICATION_JSON_VALUE)
     public Patient patientSave(@RequestBody Patient patient) {
         patientService.savePatient(patient);
@@ -49,7 +48,6 @@ public class PatientController {
     }
 
     // DELETE
-
     @DeleteMapping(value = "/patientDelete/{id}")
     public Boolean patientDelete(@PathVariable Long id) {
         return patientService.deletePatient(patientService.findPatientById(id));
@@ -57,11 +55,11 @@ public class PatientController {
     }
 
     // PUT
-
     @PutMapping(value = "/patientUpdate/{id}")
-    public Patient patientUpdate(@PathVariable Long id, @RequestBody Patient patient) {
+    public void patientUpdate(@RequestBody Patient patient) {
 
-        return patientService.updatePatient(id, patient);
+        patientService.updatePatient(patient);
+
     }
 
 }
