@@ -17,7 +17,7 @@ public class Patient {
     @Column(name="family_name")
     private String familyName;
     @Column(name="birthdate")
-    private Date birthdate;
+    private String birthdate;
     @Column(name="sex")
     private String sex;
     @Column(name="home_address")
@@ -29,7 +29,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(Long id, String givenName, String familyName, Date birthdate, String sex, String homeAddress, String phoneNumber) {
+    public Patient(Long id, String givenName, String familyName, String birthdate, String sex, String homeAddress, String phoneNumber) {
         this.id = id;
         this.givenName = givenName;
         this.familyName = familyName;
@@ -64,11 +64,11 @@ public class Patient {
         this.familyName = familyName;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 

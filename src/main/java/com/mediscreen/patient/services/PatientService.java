@@ -13,13 +13,12 @@ public interface PatientService {
     // R - Read
     List<Patient> findAllPatient();
     Patient findPatientById(Long id);
-    Patient findPatientByGivenNameAndFamilyName(String givenName, String familyName);
+    Patient findPatientByFamilyName(String familyName);
 
     // CUD - Create, Update, Delete
     Patient savePatient(Patient patient);
     Boolean deletePatient(Patient patient);
-    Patient updatePatient(Patient patient);
-
+    Patient updatePatient(Long id, Patient patient);
 
 
 }

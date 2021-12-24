@@ -30,12 +30,13 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient findPatientById(Long id) {
+
         return patientDAO.findPatientById(id);
     }
 
     @Override
-    public Patient findPatientByGivenNameAndFamilyName(String givenName, String familyName) {
-        return patientDAO.findPatientByGivenNameAndFamilyName(givenName, familyName);
+    public Patient findPatientByFamilyName(String familyName) {
+        return patientDAO.findPatientByFamilyName(familyName);
     }
 
     // CREATE - POST
@@ -57,7 +58,9 @@ public class PatientServiceImpl implements PatientService {
 
     // UPDATE - PUT
     @Override
-    public Patient updatePatient(Patient patient) {
+    public Patient updatePatient(Long id, Patient patient) {
+
+        patient.setId(id);
 
         return patientDAO.save(patient);
     }
