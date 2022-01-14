@@ -19,7 +19,7 @@ import java.util.Objects;
 
 @EnableSwagger2WebMvc
 @Api(description = "Gestion des patients")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost/")
 @RestController
 public class PatientController {
 
