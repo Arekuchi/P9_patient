@@ -27,6 +27,11 @@ public class PatientController {
     private PatientService patientService;
 
     // GET
+
+    /**
+     * Methode pour renvoyer la liste de tous les Patients présent en base de donnée
+     * @return
+     */
     @ApiOperation(value = "Récupère tous les patients")
     @GetMapping(value = "/patientList")
     public List<Patient> findAllPatient() {
@@ -38,6 +43,11 @@ public class PatientController {
         return patientList;
     }
 
+    /**
+     * Méthode pour renvoyer un Patient présent en base de donnée en le cherchant par son ID
+     * @param id
+     * @return
+     */
     @ApiOperation(value = "Récupère un patient selon son ID")
     @ApiResponses(value = {@ApiResponse(code = 404, message = "Patient with id { id } doesn't exist in database")})
     @GetMapping(value = "/patientById/{id}")
@@ -49,6 +59,11 @@ public class PatientController {
         return patient;
     }
 
+    /**
+     * Méthode pour renvoyer un Patient présent en base de donnée en le cherchant par son nom de famille
+     * @param familyName
+     * @return
+     */
     @ApiOperation(value = "Récupère un patient selon son prénom et son nom")
     @ApiResponses(value = {@ApiResponse(code = 404, message = "Patient { firstName lastName } doesn't exist in database")})
     @GetMapping(value = "/patientByName/{familyName}")
@@ -62,6 +77,12 @@ public class PatientController {
     }
 
     // POST
+
+    /**
+     * Méthode pour enregistrer un Patient en base de donnée
+     * @param patient
+     * @return
+     */
     @ApiOperation(value = "Sauvegarde un patient")
     @ApiResponses(value = {@ApiResponse(code = 404, message = "Patient { firstName lastName } already exist in database")})
     @PostMapping(value = "/patientSave", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -73,6 +94,12 @@ public class PatientController {
     }
 
     // DELETE
+
+    /**
+     * Méthode pour supprimer un Patient de la base de donnée
+     * @param id
+     * @return
+     */
     @ApiOperation(value = "Supprimer un patient selon son ID")
     @ApiResponses(value = {@ApiResponse(code = 404, message = "Patient with id { id } to delete doesn't exist")})
     @DeleteMapping(value = "/patientDelete/{id}")
@@ -82,6 +109,12 @@ public class PatientController {
     }
 
     // PUT
+
+    /**
+     * Méthode pour mettre à jour un Patient en base de donnée
+     * @param id
+     * @param patient
+     */
     @ApiOperation(value = "Met à jour un patient selon son ID")
     @ApiResponses(value = {@ApiResponse(code = 404, message = "Patient with id { id } to update doesn't exist")})
     @PutMapping(value = "/patientUpdate/{id}")
